@@ -1,0 +1,9 @@
+name: eternalanvils
+version: 1.0
+main: io.github.emgv0501.EternalAnvilsPlugin
+author: Emgv0501
+prefix: EternalAnvils
+api-version: 1.13
+commands:
+  eternalanvils:
+    description: Main command for EternalAnvils
