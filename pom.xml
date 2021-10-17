@@ -6,11 +6,8 @@
 
     <groupId>io.github.emgv0501</groupId>
     <artifactId>EternalAnvils</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>target</module>
-    </modules>
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -27,32 +24,6 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <relocations>
-                        <relocation>
-                            <pattern>me.yushust.inject</pattern>
-                            <shadedPattern>io.github.matirosen.awesomepoints.inject</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>javax.inject</pattern>
-                            <shadedPattern>io.github.matirosen.awesomepoints.javax.inject</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
