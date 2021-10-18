@@ -11,12 +11,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 
 public class EternalAnvilsPlugin extends  JavaPlugin{
 
     private File anvilDBFile;
     private FileConfiguration anvilDBConfig;
+    int a = 10;
+
 
 
     @Override
@@ -33,7 +36,8 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
     @Override
     public void onDisable() {
         System.out.println("Disabling EternalAnvils. Goodbye :).");
-
+        String listString = (anvilsLocations.returnList()).stream().map(Object::toString).collect(Collectors.joining(", "));
+        getCustomDB().set("anvil-locations", a );
     }
 
 

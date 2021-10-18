@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AnvilsLocations {
 
@@ -20,7 +21,7 @@ public class AnvilsLocations {
 
     public void removeAnvil(Location location){anvilLocation.remove(location);}
     public void addAnvil(Location location) {anvilLocation.add(location);}
-
+    public List<Location>  returnList(){return anvilLocation;}
 
     public boolean checkAnvil(Location location){
         if (anvilLocation.contains(location)){
