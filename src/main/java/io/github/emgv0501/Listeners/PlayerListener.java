@@ -1,6 +1,7 @@
 package io.github.emgv0501.Listeners;
 
 
+import io.github.emgv0501.Commands.EternalAnvilsMainCommand;
 import io.github.emgv0501.Data.AnvilsLocations;
 import io.github.emgv0501.Data.PlayerController;
 import io.github.emgv0501.Utils.Utils;
@@ -24,6 +25,7 @@ public class PlayerListener implements Listener {
     private final JavaPlugin plugin;
     private final PlayerController playersList;
 
+
     public PlayerListener(JavaPlugin plugin, AnvilsLocations anvilsLocations, PlayerController playersList){
         this.plugin = plugin;
         Bukkit.getPluginManager().registerEvents(this, plugin);
@@ -41,7 +43,7 @@ public class PlayerListener implements Listener {
         UUID uuid = player.getUniqueId();
         Location anvilLoc;
 
-        if (playersList.checkPlayers(uuid)){
+        if (playersList.checkPlayers(uuid)){ // && player.hasPermission("eternalanvils.use")){
 
         if ((action == Action.LEFT_CLICK_BLOCK && (player.getMainHand() == null || player.getItemInHand().getType().equals(Material.AIR))))   {
 
@@ -49,19 +51,26 @@ public class PlayerListener implements Listener {
 
                anvilLoc = event.getClickedBlock().getLocation();
 
-                if (anvilsLocations.checkAnvil(anvilLoc)){
+
+
+                if (anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 2){
 
                     anvilsLocations.removeAnvil(anvilLoc);
                     player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Eternal Anvil removed."));
+                    EternalAnvilsMainCommand.actionID = 0;
+                    playersList.removePlayer(uuid);
 
+                }
 
-                } else {
+                if (!anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 1){
 
                     anvilsLocations.addAnvil(anvilLoc);
                     player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Eternal Anvil set."));
+                    EternalAnvilsMainCommand.actionID = 0;
+                    playersList.removePlayer(uuid);
 
                 }
-                playersList.removePlayer(uuid);
+
 
 
             }

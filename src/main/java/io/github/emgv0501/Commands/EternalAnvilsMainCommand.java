@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class EternalAnvilsMainCommand implements CommandExecutor {
-
+    public static int actionID = 0;
     private  final AnvilsLocations anvilsLocations;
     private  final PlayerController playersList;
 
@@ -42,11 +42,12 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("set")) {
             playersList.addPlayer(uuid);
-            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Right click on an anvil to make it indestructible."));
+            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Left click on an anvil to make it indestructible."));
+            actionID = 1;
         } else if (args[0].equalsIgnoreCase("remove")){
             playersList.addPlayer(uuid);
-            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Right click on an anvil to make it destructible again."));
-
+            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Left click on an anvil to make it destructible again."));
+            actionID = 2;
 
         }
         return false;
