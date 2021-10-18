@@ -28,7 +28,12 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("set")) {
             player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Right click on an anvil to make it indestructible."));
+        } else  if (args[0].equalsIgnoreCase("remove")){
+
+            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Right click on an anvil to make it destructible again."));
+
         }
+
         return false;
     }
 }
