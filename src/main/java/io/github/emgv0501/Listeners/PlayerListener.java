@@ -9,11 +9,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -78,8 +85,33 @@ public class PlayerListener implements Listener {
         }
 
     }
+    }
+        @EventHandler
+        public void onAnvilBreak(BlockBreakEvent event){
+            Block block = event.getBlock();
+            Material blockMaterial = event.getBlock().getType();
+            Location blockLocation = event.getBlock().getLocation();
+            Player player = event.getPlayer();
+
+            if (blockMaterial == Material.ANVIL || blockMaterial == Material.CHIPPED_ANVIL || blockMaterial == Material.DAMAGED_ANVIL){
+
+                if (anvilsLocations.checkAnvil(blockLocation)){
+                    event.setCancelled(true);
+                }
+
+
+            }
+
+
+
+            }
+
 }
-}
+
+
+
+
+
 
 
 
