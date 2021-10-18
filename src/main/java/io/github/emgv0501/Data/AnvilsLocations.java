@@ -24,10 +24,7 @@ public class AnvilsLocations {
 
     public boolean checkAnvil(Location location){
         if (anvilLocation.contains(location)){
-            anvilLocation.remove(location);
             return true;
-        }
-        anvilLocation.add(location);
-        return false;
+        } else return false;
     }
 }

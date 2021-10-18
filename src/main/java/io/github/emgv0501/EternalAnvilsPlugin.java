@@ -1,6 +1,9 @@
 package io.github.emgv0501;
 
 import io.github.emgv0501.Commands.EternalAnvilsMainCommand;
+import io.github.emgv0501.Data.AnvilsLocations;
+import io.github.emgv0501.Data.PlayerController;
+import io.github.emgv0501.Listeners.PlayerListener;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,9 +18,13 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
     private File anvilDBFile;
     private FileConfiguration anvilDBConfig;
 
+
     @Override
     public void onEnable() {
-        new EternalAnvilsMainCommand(this);
+        AnvilsLocations anvilsLocations = new AnvilsLocations();
+        PlayerController playersList = new PlayerController();
+        new PlayerListener(this, anvilsLocations, playersList);
+        new EternalAnvilsMainCommand(this, playersList, anvilsLocations);
         createCustomDB();
         System.out.println("Enabling EternalAnvils.");
     }
