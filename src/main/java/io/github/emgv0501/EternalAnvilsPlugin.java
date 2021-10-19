@@ -21,6 +21,7 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
     private File anvilDBFile;
     private FileConfiguration anvilDBConfig;
     private AnvilsLocations anvilsLocations;
+    public String ver = getDescription().getVersion();
 
 
 
@@ -67,6 +68,7 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
     public FileConfiguration getCustomDB() {
         return this.anvilDBConfig;
     }
+    public String getVer(String ver){return  ver;}
 
 
     private void createCustomDB() {

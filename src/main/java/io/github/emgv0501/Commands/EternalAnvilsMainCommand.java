@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.Console;
 import java.util.Objects;
@@ -36,7 +37,31 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
             return false;
         }
 
-        if (args.length <= 0) return false;
+        if (args.length <= 0){
+            player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c Use /eternalanvils help to view plugin commands."));
+            return false;
+        }
+
+
+        if (args[0].equalsIgnoreCase("help")){
+            player.sendMessage(Utils.format("&f&l--------------- &3&lEternal&8&lAnvils&f&l ---------------"));
+            player.sendMessage(Utils.format("&a/eternalanvils set: &eCreates a new EternalAnvil."));
+            player.sendMessage(Utils.format("&a/eternalanvils remove: &eRemoves an existent EternalAnvil."));
+            player.sendMessage(Utils.format("&a/eternalanvils removeall: &eRemoves all existent EternalAnvils."));
+            player.sendMessage(Utils.format("&a/eternalanvils list: &eRetrieves a list with the location of the current EternalAnvils."));
+            player.sendMessage(Utils.format("&a/eternalanvils info: &eShows general infomation about the plugin."));
+        }
+
+        if (args[0].equalsIgnoreCase("info")){
+
+            player.sendMessage(Utils.format("&f&l--------------- &3&lEternal&8&lAnvils&f&l ---------------"));
+            player.sendMessage(Utils.format("&aAuthor:&e Emgv0501"));
+            player.sendMessage(Utils.format("&aVersion:&e 1.0"));
+
+
+
+        }
+
 
 
 
