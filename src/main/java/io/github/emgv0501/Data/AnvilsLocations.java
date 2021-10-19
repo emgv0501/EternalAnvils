@@ -23,6 +23,8 @@ public class AnvilsLocations {
     public void addAnvil(Location location) {anvilLocation.add(location);}
     public List<Location>  returnList(){return anvilLocation;}
 
+
+
     public boolean checkAnvil(Location location){
         if (anvilLocation.contains(location)){
             return true;
