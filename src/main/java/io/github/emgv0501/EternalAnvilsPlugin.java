@@ -31,6 +31,9 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
         new PlayerListener(this, anvilsLocations, playersList);
         new EternalAnvilsMainCommand(this, playersList, anvilsLocations);
         createCustomDB();
+        List<Location> locations = (List<Location>)getCustomDB().getList("anvil-locations");
+        anvilsLocations.addList(locations);
+        System.out.println(locations);
         System.out.println(anvilsLocations.returnList());
         System.out.println("Enabling EternalAnvils.");
     }

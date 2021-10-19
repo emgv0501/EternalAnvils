@@ -21,6 +21,7 @@ public class AnvilsLocations {
 
     public void removeAnvil(Location location){anvilLocation.remove(location);}
     public void addAnvil(Location location) {anvilLocation.add(location);}
+    public void addList(List<Location> locations){anvilLocation.addAll(locations);}
     public List<Location>  returnList(){return anvilLocation;}
 
 
