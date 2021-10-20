@@ -7,3 +7,15 @@ api-version: 1.13
 commands:
   eternalanvils:
     description: Main command for EternalAnvils
+  eternalanvils set:
+    description: Set an EternalAnvil
+  eternalanvils remove:
+    description: Removes an EternalAnvil
+  eternalanvils removeall:
+    description: Removes all current EternalAnvils
+  eternalanvils list:
+    description: Lists all current EternalAnvils locations
+  eternalanvils help:
+    description: Lists all commands
+  eternalanvils info:
+    description: Shows basic plugin information
