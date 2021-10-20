@@ -54,7 +54,7 @@ public class PlayerListener implements Listener {
 
         if ((action == Action.LEFT_CLICK_BLOCK && (player.getMainHand() == null || player.getItemInHand().getType().equals(Material.AIR))))   {
 
-            if (event.getClickedBlock().getType() == Material.ANVIL) {
+            if (event.getClickedBlock().getType() == Material.ANVIL || event.getClickedBlock().getType() == Material.CHIPPED_ANVIL || event.getClickedBlock().getType() == Material.DAMAGED_ANVIL) {
 
                anvilLoc = event.getClickedBlock().getLocation();
 

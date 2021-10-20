@@ -69,7 +69,11 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("list")){
             player.sendMessage(Utils.format("&f&l--------------- &3&lEternal&8&lAnvils&f&l ---------------"));
-            player.sendMessage(Utils.format(anvilsLocations.returnList().toString()));
+            if (anvilsLocations.returnList().size() == 0){
+                player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c There aren't EternalAnvils to remove."));
+
+            }
+            player.sendMessage(Utils.format(anvilsLocations.getLocations()));
 
 
         }

@@ -24,7 +24,19 @@ public class AnvilsLocations {
     public void addList(List<Location> locations){anvilLocation.addAll(locations);}
     public  void eraseList(){anvilLocation.clear();}
     public List<Location>  returnList(){return anvilLocation;}
-
+    public String getLocations(){
+        String mundo = "";
+        String x = "";
+        String y= "";
+        String z= "";
+        for (Location location : anvilLocation){
+           mundo = location.getWorld().toString();
+            x = String.valueOf(location.getBlockX());
+             y = String.valueOf(location.getBlockY());
+           z = String.valueOf(location.getBlockZ());
+        }
+        return mundo.concat(x).concat(y).concat(z);
+    }
 
 
     public boolean checkAnvil(Location location){
