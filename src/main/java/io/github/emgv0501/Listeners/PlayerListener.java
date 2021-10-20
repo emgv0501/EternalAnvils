@@ -5,10 +5,7 @@ import io.github.emgv0501.Commands.EternalAnvilsMainCommand;
 import io.github.emgv0501.Data.AnvilsLocations;
 import io.github.emgv0501.Data.PlayerController;
 import io.github.emgv0501.Utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
@@ -18,6 +15,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -87,7 +86,7 @@ public class PlayerListener implements Listener {
     }
     }
         @EventHandler
-        public void onAnvilBreak(BlockBreakEvent event){
+        public void onAnvilBreak(BlockDamageEvent event){
             Block block = event.getBlock();
             Material blockMaterial = event.getBlock().getType();
             Location blockLocation = event.getBlock().getLocation();
@@ -95,9 +94,9 @@ public class PlayerListener implements Listener {
 
             if (blockMaterial == Material.ANVIL || blockMaterial == Material.CHIPPED_ANVIL || blockMaterial == Material.DAMAGED_ANVIL){
 
-                if (anvilsLocations.checkAnvil(blockLocation)){
+                if (anvilsLocations.checkAnvil(blockLocation) && (blockLocation.getBlock().getType() == blockMaterial.ANVIL || blockLocation.getBlock().getType() == blockMaterial.CHIPPED_ANVIL || blockLocation.getBlock().getType() == Material.DAMAGED_ANVIL)){
                     event.setCancelled(true);
-                }
+                } else block.setType(Material.ANVIL);
 
 
             }
