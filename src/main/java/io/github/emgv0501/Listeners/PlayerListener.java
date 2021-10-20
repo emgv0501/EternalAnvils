@@ -86,7 +86,7 @@ public class PlayerListener implements Listener {
     }
     }
         @EventHandler
-        public void onAnvilBreak(BlockDamageEvent event){
+        public void onAnvilBreak(BlockBreakEvent event){
             Block block = event.getBlock();
             Material blockMaterial = event.getBlock().getType();
             Location blockLocation = event.getBlock().getLocation();
@@ -94,9 +94,9 @@ public class PlayerListener implements Listener {
 
             if (blockMaterial == Material.ANVIL || blockMaterial == Material.CHIPPED_ANVIL || blockMaterial == Material.DAMAGED_ANVIL){
 
-                if (anvilsLocations.checkAnvil(blockLocation) && (blockLocation.getBlock().getType() == blockMaterial.ANVIL || blockLocation.getBlock().getType() == blockMaterial.CHIPPED_ANVIL || blockLocation.getBlock().getType() == Material.DAMAGED_ANVIL)){
+                if (anvilsLocations.checkAnvil(blockLocation)){
                     event.setCancelled(true);
-                } else block.setType(Material.ANVIL);
+                } 
 
 
             }
