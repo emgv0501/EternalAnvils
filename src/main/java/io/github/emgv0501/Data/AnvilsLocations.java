@@ -22,6 +22,7 @@ public class AnvilsLocations {
     public void removeAnvil(Location location){anvilLocation.remove(location);}
     public void addAnvil(Location location) {anvilLocation.add(location);}
     public void addList(List<Location> locations){anvilLocation.addAll(locations);}
+    public  void eraseList(){anvilLocation.clear();}
     public List<Location>  returnList(){return anvilLocation;}
 
 
@@ -32,3 +33,5 @@ public class AnvilsLocations {
         } else return false;
     }
 }
+
+
