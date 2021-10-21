@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.Console;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -71,9 +72,16 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
             player.sendMessage(Utils.format("&f&l--------------- &3&lEternal&8&lAnvils&f&l ---------------"));
             if (anvilsLocations.returnList().size() == 0){
                 player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c There aren't EternalAnvils to remove."));
-
+                return false;
             }
-            player.sendMessage(Utils.format(anvilsLocations.getLocations()));
+
+            List<String> listCoords = anvilsLocations.getLocations();
+            String worldFormat =   listCoords.get(0).replace("CraftWorld{name=", "");
+            player.sendMessage(Utils.format("&aWorld: " + "&e" + worldFormat.replace("}", "")));
+            player.sendMessage(Utils.format("&aX: " + "&e" + listCoords.get(1)));
+            player.sendMessage(Utils.format("&aY: " + "&e" +  listCoords.get(2)));
+            player.sendMessage(Utils.format("&aZ: " + "&e" + listCoords.get(3)));
+
 
 
         }
