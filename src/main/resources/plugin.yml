@@ -1,4 +1,4 @@
-name: eternalanvils
+name: EternalAnvils
 version: 1.0
 main: io.github.emgv0501.EternalAnvilsPlugin
 author: Emgv0501
@@ -7,8 +7,9 @@ api-version: 1.13
 commands:
   eternalanvils:
     description: Main command for EternalAnvils
+    aliases: [eanvils, ea]
   eternalanvils set:
-    description: Set an EternalAnvil
+    description: Sets an EternalAnvil
   eternalanvils remove:
     description: Removes an EternalAnvil
   eternalanvils removeall:
@@ -19,3 +20,8 @@ commands:
     description: Lists all commands
   eternalanvils info:
     description: Shows basic plugin information
+permissions:
+  eternalanvils.use:
+    permission-message: You do not have permission to use this command.
+    description: Grants access to all plugin commands.
+    default: op

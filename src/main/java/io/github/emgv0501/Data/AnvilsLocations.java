@@ -27,25 +27,6 @@ public class AnvilsLocations {
     public void addList(List<Location> locations){anvilLocation.addAll(locations);}
     public  void eraseList(){anvilLocation.clear();}
     public List<Location>  returnList(){return anvilLocation;}
-    public List<String> getLocations(){
-        String world = "";
-        String x = "";
-        String y= "";
-        String z= "";
-        for (Location location : anvilLocation){
-           world = location.getWorld().toString();
-            x = String.valueOf(location.getBlockX());
-             y = String.valueOf(location.getBlockY());
-           z = String.valueOf(location.getBlockZ());
-            anvilLocationString.add(world);
-            anvilLocationString.add(x);
-            anvilLocationString.add(y);
-            anvilLocationString.add(z);
-        }
-
-        return anvilLocationString;
-    }
-
 
     public boolean checkAnvil(Location location){
         if (anvilLocation.contains(location)){

@@ -49,7 +49,7 @@ public class PlayerListener implements Listener {
         UUID uuid = player.getUniqueId();
         Location anvilLoc;
 
-        if (playersList.checkPlayers(uuid)){ // && player.hasPermission("eternalanvils.use")){
+        if (playersList.checkPlayers(uuid)){
 
         if ((action == Action.LEFT_CLICK_BLOCK && (player.getMainHand() == null || player.getItemInHand().getType().equals(Material.AIR))))   {
 
@@ -57,12 +57,25 @@ public class PlayerListener implements Listener {
 
                anvilLoc = event.getClickedBlock().getLocation();
 
+                if (anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 1){
+                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c That anvil is already an EternalAnvil."));
+                    EternalAnvilsMainCommand.actionID = 0;
+                    playersList.removePlayer(uuid);
+                }
+
+                if (!anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 2){
+
+                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c That anvil is not an EternalAnvil."));
+                    EternalAnvilsMainCommand.actionID = 0;
+                    playersList.removePlayer(uuid);
+
+                }
 
 
                 if (anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 2){
 
                     anvilsLocations.removeAnvil(anvilLoc);
-                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Eternal Anvil removed."));
+                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e EternalAnvil removed."));
                     EternalAnvilsMainCommand.actionID = 0;
                     playersList.removePlayer(uuid);
 
@@ -71,7 +84,7 @@ public class PlayerListener implements Listener {
                 if (!anvilsLocations.checkAnvil(anvilLoc) && EternalAnvilsMainCommand.actionID == 1){
 
                     anvilsLocations.addAnvil(anvilLoc);
-                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e Eternal Anvil set."));
+                    player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&e EternalAnvil set."));
                     EternalAnvilsMainCommand.actionID = 0;
                     playersList.removePlayer(uuid);
 
@@ -110,9 +123,11 @@ public class PlayerListener implements Listener {
             Player player = event.getPlayer();
 
             if (blockMaterial == Material.ANVIL || blockMaterial == Material.CHIPPED_ANVIL || blockMaterial == Material.DAMAGED_ANVIL){
-                System.out.println(block.getBlockData().getSoundGroup().getBreakSound());
                 if (anvilsLocations.checkAnvil(blockLocation)){
                     event.setCancelled(true);
+                    if (player.hasPermission("eternalanvils.use")) {
+                        player.sendMessage(Utils.format("&f&l[&3&lEternal&8&lAnvils&f&l]&c You can't break an EternalAnvil."));
+                    }
                 } 
 
 

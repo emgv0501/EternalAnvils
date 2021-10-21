@@ -34,32 +34,19 @@ public class EternalAnvilsPlugin extends  JavaPlugin{
         createCustomDB();
         List<Location> locations = (List<Location>)getCustomDB().getList("anvil-locations");
         anvilsLocations.addList(locations);
-        System.out.println(locations);
-        System.out.println(anvilsLocations.returnList());
-        System.out.println("Enabling EternalAnvils.");
+        System.out.println("EternalAnvils enabled.");
     }
 
 
     @Override
     public void onDisable() {
         System.out.println("Disabling EternalAnvils. Goodbye :).");
-        //String listString = (anvilsLocations.returnList()).stream().map(Object::toString).collect(Collectors.joining(", "));
         getCustomDB().set("anvil-locations", anvilsLocations.returnList());
         try {
             getCustomDB().save(anvilDBFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        List prueba0 = getCustomDB().getList("anvil-locations");
-        List prueba = anvilsLocations.returnList();
-        String prueba2 = anvilsLocations.returnList().toString();
-        System.out.println(prueba0);
-        System.out.println(prueba);
-        System.out.println(prueba2);
-        System.out.println(anvilsLocations.returnList());
-        System.out.println(getCustomDB().getList("anvil-locations"));
 
     }
 
