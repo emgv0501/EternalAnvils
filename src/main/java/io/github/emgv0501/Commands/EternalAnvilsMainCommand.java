@@ -13,6 +13,11 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class EternalAnvilsMainCommand implements CommandExecutor {
     public static int actionID = 0;
@@ -90,7 +95,12 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
                 listCoords.stream().forEach(location -> {
                     String worldFormat = location.getWorld().toString().replace("CraftWorld{name=", "");
                     listCount.getAndIncrement();
-                    player.sendMessage(Utils.format("&e"+ String.valueOf(listCount.get()) + ".-" + " &aWorld: " + "&e" + worldFormat.replace("}", "") + " &aX: " + "&e" + location.getBlockX() + " &aY: " + "&e" + location.getBlockY() + " &aZ: " + "&e" + location.getBlockZ()));});
+                    player.sendMessage(Utils.format("&e"+ String.valueOf(listCount.get()) + ".-" + " &aWorld: " + "&e" + worldFormat.replace("}", "") + " &aX: " + "&e" + location.getBlockX() + " &aY: " + "&e" + location.getBlockY() + " &aZ: " + "&e" + location.getBlockZ() + tp));
+                    TextComponent tp = new TextComponent("[TP]");
+                    tp.setColor(ChatColor.GREEN);
+                    tp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder ("Click to teleport to the EternalAnvil.").create()));
+                    tp.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "tp " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " 0" + " 0 " + location.getWorld() ) );
+                });
 
             }
         }
