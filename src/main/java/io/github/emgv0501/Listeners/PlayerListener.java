@@ -7,22 +7,17 @@ import io.github.emgv0501.Data.PlayerController;
 import io.github.emgv0501.Utils.Utils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.block.BlockEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class PlayerListener implements Listener {
@@ -115,7 +110,7 @@ public class PlayerListener implements Listener {
 
 
     }
-        @EventHandler
+        @EventHandler(priority = EventPriority.HIGH)
         public void onAnvilBreak(BlockBreakEvent event){
             Block block = event.getBlock();
             Material blockMaterial = event.getBlock().getType();
@@ -132,12 +127,19 @@ public class PlayerListener implements Listener {
 
 
             }
-
-
-
             }
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onAnvilPhysicsEvent(EntityChangeBlockEvent event) {
+        if (event.getBlock().getType() == Material.ANVIL && event.getEntityType() == EntityType.FALLING_BLOCK) {
+            Location blockLoc = event.getBlock().getLocation();
+        if (anvilsLocations.checkAnvil(blockLoc)) {
+            event.setCancelled(true);
+            event.getBlock().getState().update(false, false);
+        }
 
-}
+        }
+    }
+    }
 
 
 
