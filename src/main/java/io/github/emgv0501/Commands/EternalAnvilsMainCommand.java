@@ -95,11 +95,14 @@ public class EternalAnvilsMainCommand implements CommandExecutor {
                 listCoords.stream().forEach(location -> {
                     String worldFormat = location.getWorld().toString().replace("CraftWorld{name=", "");
                     listCount.getAndIncrement();
-                    player.sendMessage(Utils.format("&e"+ String.valueOf(listCount.get()) + ".-" + " &aWorld: " + "&e" + worldFormat.replace("}", "") + " &aX: " + "&e" + location.getBlockX() + " &aY: " + "&e" + location.getBlockY() + " &aZ: " + "&e" + location.getBlockZ() + tp));
                     TextComponent tp = new TextComponent("[TP]");
-                    tp.setColor(ChatColor.GREEN);
+                    tp.setColor(ChatColor.DARK_GREEN);
+                    tp.setBold(true);
                     tp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder ("Click to teleport to the EternalAnvil.").create()));
-                    tp.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "tp " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " 0" + " 0 " + location.getWorld() ) );
+                    tp.setClickEvent( new ClickEvent( ClickEvent.Action.SUGGEST_COMMAND, "/tp " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " 0" + " 0 " + worldFormat.replace("}", "") ) );
+                    player.sendMessage(Utils.format("&e"+ String.valueOf(listCount.get()) + ".-" + " &aWorld: " + "&e" + worldFormat.replace("}", "") + " &aX: " + "&e" + location.getBlockX() + " &aY: " + "&e" + location.getBlockY() + " &aZ: " + "&e" + location.getBlockZ()));
+                    player.spigot().sendMessage(tp);
+
                 });
 
             }
