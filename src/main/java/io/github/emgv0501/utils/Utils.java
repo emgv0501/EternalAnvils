@@ -1,4 +1,4 @@
-package io.github.emgv0501.Utils;
+package io.github.emgv0501.utils;
 
 import org.bukkit.ChatColor;
 
