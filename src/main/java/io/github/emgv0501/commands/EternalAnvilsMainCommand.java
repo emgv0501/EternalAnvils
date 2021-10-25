@@ -1,9 +1,9 @@
-package io.github.emgv0501.commands;
+package io.github.emgv0501.Commands;
 
-import io.github.emgv0501.data.AnvilsLocations;
-import io.github.emgv0501.data.PlayerController;
+import io.github.emgv0501.Data.AnvilsLocations;
+import io.github.emgv0501.Data.PlayerController;
 import io.github.emgv0501.EternalAnvilsPlugin;
-import io.github.emgv0501.utils.Utils;
+import io.github.emgv0501.Utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

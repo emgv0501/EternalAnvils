@@ -1,4 +1,4 @@
-package io.github.emgv0501.data;
+package io.github.emgv0501.Data;
 
 import java.util.ArrayList;
 import java.util.List;
