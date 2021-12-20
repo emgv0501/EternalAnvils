@@ -16,6 +16,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
@@ -97,9 +98,13 @@ public class PlayerListener implements Listener {
     if ((action == Action.RIGHT_CLICK_BLOCK) && (event.getClickedBlock().getType() == Material.CHIPPED_ANVIL || event.getClickedBlock().getType() == Material.DAMAGED_ANVIL)){
 
         anvilLoc = event.getClickedBlock().getLocation();
+        float anvilPitch = event.getClickedBlock().getLocation().getPitch();
+        float anvilYaw = event.getClickedBlock().getLocation().getYaw();
 
        if (anvilsLocations.checkAnvil(anvilLoc)){
 
+           anvilLoc.setPitch(anvilPitch);
+           anvilLoc.setYaw(anvilYaw);
            anvilLoc.getBlock().setType(Material.ANVIL);
 
        }
@@ -139,7 +144,15 @@ public class PlayerListener implements Listener {
 
         }
     }
+
+    @EventHandler
+    public void onPlayerDisconnect(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        if (playersList.checkPlayers(player.getUniqueId())){playersList.removePlayer(player.getUniqueId());}
+
+        }
     }
+
 
 
 
